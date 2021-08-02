@@ -10,6 +10,7 @@ export class AlterUserDeleteUsername1626531707789 implements MigrationInterface 
       await queryRunner.addColumn("users",
         new TableColumn({
           name: 'username',
+          isNullable: true,
           type: 'varchar'
         })
       )
