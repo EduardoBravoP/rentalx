@@ -4,15 +4,18 @@ import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO"
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory"
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase"
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase"
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory"
 
 let authenticateUserUseCase: AuthenticateUserUseCase
 let usersRepositoryInMemory: UsersRepositoryInMemory
+let userTokensRepositoryInMemory: UsersTokensRepositoryInMemory
 let createUserUseCase: CreateUserUseCase
 
 describe("Authenticate User", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory()
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory)
+    userTokensRepositoryInMemory = new UsersTokensRepositoryInMemory()
+    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory, userTokensRepositoryInMemory)
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory)
   })
 
